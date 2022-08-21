@@ -1,0 +1,38 @@
+answers = [1,3,2,4,2]
+
+def solution(answers):
+    answer = []
+    s1 = []
+    s2 = []
+    s3 = []
+    for i in range(0, 10000):
+        if i % 5 == 4:
+            s1.extend([1,2,3,4,5])
+        if i % 8 == 7:
+            s2.extend([2,1,2,3,2,4,2,5])
+        if i % 10 == 9:
+            s3.extend([3,3,1,1,2,2,4,4,5,5])
+
+    s1_corr = []
+    s2_corr = []
+    s3_corr = []
+
+    for i in range(0,len(answers)):
+        if answers[i] == s1[i]:
+            s1_corr.append(1)
+        if answers[i] == s2[i]:
+            s2_corr.append(1)
+        if answers[i] == s3[i]:
+            s3_corr.append(1)
+
+    students = [1,2,3]
+    scores = [sum(s1_corr), sum(s2_corr), sum(s3_corr)]
+    result = dict(zip(students,scores))
+
+    for key in result:
+        if result.get(key) == max(scores):
+            answer.append(key)
+
+    return answer
+
+print(solution(answers))
